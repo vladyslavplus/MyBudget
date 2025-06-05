@@ -43,7 +43,16 @@ public class ExpenseService : IExpenseService
         var pagedExpenses = await _unitOfWork.Expenses
             .GetAllPaginatedAsync(parameters, new SortHelper<Expense>(), cancellationToken);
 
-        var mapped = pagedExpenses.Select(e => e.Adapt<ExpenseResponseDto>()).ToList();
+        var mapped = pagedExpenses.Select(e => new ExpenseResponseDto
+        {
+            Id = e.Id,
+            Amount = e.Amount,
+            Date = e.Date,
+            Description = e.Description,
+            UserId = e.UserId,
+            User = e.User?.UserName ?? string.Empty,
+            Category = e.Category?.Name ?? string.Empty
+        }).ToList();
 
         return new PagedList<ExpenseResponseDto>(
             mapped,
