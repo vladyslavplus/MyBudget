@@ -1,6 +1,7 @@
 ﻿using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using MyBudget.BLL.DTOs.Expense;
+using MyBudget.BLL.DTOs.User;
 using MyBudget.DAL.Entities;
 
 namespace MyBudget.BLL.Configuration;
@@ -19,7 +20,7 @@ public static class MapsterConfig
     
     public static IServiceCollection AddMapsterConfiguration(this IServiceCollection services)
     {
-        MapsterConfig.RegisterMappings();
+        RegisterMappings();
         services.AddMapster();
 
         return services;

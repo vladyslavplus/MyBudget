@@ -96,6 +96,7 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddDataAccess(builder.Configuration);
 builder.Services.AddBusinessLogic();
+builder.Services.AddMapsterConfiguration();
 
 var app = builder.Build();
 
